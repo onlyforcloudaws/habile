@@ -1,0 +1,35 @@
+- name: Provision Application VM
+  hosts: app
+  become: true
+  remote_user: ubuntu
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Install Tomcat
+      apt:
+        name: tomcat
+        state: present
+
+          # - name: Deploy WAR file
+          #copy:
+          #src: /root/spring-framework-petclinic/application.war
+          #dest: /root/rar/tomcat/webapps/application.war
+          #notify: restart tomcat
+
+  handlers:
+    - name: restart tomcat
+      service:
+        name: tomcat
+        state: restarted
+
+- name: Provision Database VM
+  hosts: db_vms
+  become: true
+  tasks:
+    - name: Install MySQL
+      package:
+        name: mysql
+        state: present

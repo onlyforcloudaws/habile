@@ -1,0 +1,9 @@
+[app]
+43.205.255.172 ansible_user=ubuntu
+
+[db]
+15.206.69.148 ansible_user=ubuntu
+[all]
+ubuntu@43.205.255.172
+ubuntu@15.206.69.148
+
